@@ -46,7 +46,7 @@ const socials = [
       let finished = true;
       lines.forEach((line, lineIndex) => {
         const target = targets[lineIndex];
-        const revealed = Math.max(0, Math.floor((elapsed - lineIndex * 170) / 70));
+        const revealed = Math.max(0, Math.floor((elapsed - lineIndex * 200) / 85));
         if (revealed < target.length) finished = false;
         line.textContent = [...target].map((character, index) => index < revealed ? character : randomLetter()).join('');
       });
