@@ -1,0 +1,88 @@
+{
+  "doctype": "DocType",
+  "name": "Portfolio Experience",
+  "module": "Portfolio Content",
+  "custom": 0,
+  "istable": 0,
+  "issingle": 0,
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "role",
+    "location",
+    "start_date",
+    "end_date",
+    "description",
+    "achievements",
+    "technologies",
+    "display_order"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "role",
+      "label": "Role",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "location",
+      "label": "Location",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "start_date",
+      "label": "Start Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "end_date",
+      "label": "End Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "achievements",
+      "label": "Achievements",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "technologies",
+      "label": "Technologies",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "display_order",
+      "label": "Display Order",
+      "fieldtype": "Int",
+      "default": "0",
+      "in_list_view": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1
+    }
+  ],
+  "sort_field": "display_order",
+  "sort_order": "ASC"
+}

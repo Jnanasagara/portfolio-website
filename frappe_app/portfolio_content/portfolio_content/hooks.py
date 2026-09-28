@@ -1,0 +1,6 @@
+app_name = "portfolio_content"
+app_title = "Portfolio Content"
+app_publisher = "Jnanasagara Srinivasa"
+app_description = "Structured content for the portfolio website"
+app_email = ""
+app_license = "MIT"

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getWriting } from '../../lib/frappe/writing';
+import type { Writing } from '../../lib/frappe/types';
+export async function getStaticPaths() {
+  const writing = await getWriting();
+  return writing.map(item => ({ params: { slug: item.slug }, props: { item } }));
+}
+const { item } = Astro.props as { item: Writing };
+---
+<BaseLayout description={item.excerpt}>
+  <article class="article-page"><a class="text-link" href="/#writing">← BACK TO WRITING</a><p class="eyebrow">NOTE / {item.published_date?.slice(0,10) || 'UNDATED'}</p><h1>{item.title}</h1><p class="article-excerpt">{item.excerpt}</p><div class="article-body">{item.content.split('\n\n').map(paragraph => <p>{paragraph}</p>)}</div></article>
+</BaseLayout>

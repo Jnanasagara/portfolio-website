@@ -1,0 +1,41 @@
+---
+import { profileLinks } from '../lib/profile';
+const socials = [
+  { number: '01', name: 'LinkedIn', detail: 'WORK / BACKGROUND', url: profileLinks.linkedin, external: true },
+  { number: '02', name: 'GitHub', detail: 'CODE / EXPERIMENTS', url: profileLinks.github, external: true },
+  { number: '03', name: 'X', detail: 'NOTES / CONVERSATION', url: profileLinks.x, external: true },
+  { number: '04', name: 'Email', detail: profileLinks.email, url: `mailto:${profileLinks.email}`, external: false },
+];
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-topline"><span>PORTFOLIO / 2026</span><span class="hero-topline-center">DESIGNING THE USEFUL PARTS OF SOFTWARE</span><span>INDIA · IST</span></div>
+  <div class="hero-main">
+    <div class="hero-copy">
+      <p class="eyebrow hero-eyebrow"><span class="tiny-cross">+</span> ENGINEERING / AUTOMATION / SYSTEMS</p>
+      <h1 id="hero-title"><span>Jnanasagara</span><span>Srinivasa<span class="hero-period">.</span></span></h1>
+      <div class="hero-bottom"><div class="hero-description"><p>I'm a computer science student who likes turning ideas into working projects. Most of what I build starts with something I want to understand better.</p><p>Right now, I'm especially interested in backend systems, automation, cloud, and finding better ways to build useful software.</p></div><a class="text-link hero-link" href="#work">EXPLORE SELECTED WORK <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <aside class="hero-socials" aria-label="Ways to connect">
+      <div class="hero-socials-heading"><span>ELSEWHERE / FIND ME ONLINE</span><span>04 CHANNELS</span></div>
+      <div class="hero-socials-list">
+        {socials.map(({ number, name, detail, url, external }) => (
+          <a class="hero-social" href={url} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} aria-label={external ? `${name} profile, opens in a new tab` : `Email ${profileLinks.email}`}>
+            <span class="hero-social-index">{number}</span><span class="hero-social-main"><strong>{name}</strong><small>{detail}</small></span><span class="hero-social-arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+      <p class="hero-socials-note">EMAIL + EXTERNAL PROFILES</p>
+    </aside>
+  </div>
+  <div class="hero-footnote"><span>SCROLL TO READ THE LOG</span><span>↓</span></div>
+</section>
+<script>
+  import { animate } from 'animejs/animation';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!reduce.matches) {
+    animate('.site-header', { opacity: [0, 1], y: [-8, 0], duration: 550, ease: 'outQuad' });
+    animate('.hero-topline, .hero-eyebrow', { opacity: [0, 1], duration: 700, delay: 200, ease: 'outQuad' });
+    animate('.hero h1 span', { opacity: [0, 1], y: [18, 0], duration: 850, delay: 280, ease: 'outCubic' });
+    animate('.hero-bottom, .hero-socials', { opacity: [0, 1], y: [12, 0], duration: 700, delay: 520, ease: 'outQuad' });
+  }
+</script>

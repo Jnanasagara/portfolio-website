@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectList from '../components/ProjectList.astro';
+import { getProjects } from '../lib/frappe/projects';
+import { getExperience } from '../lib/frappe/experience';
+import { getWriting } from '../lib/frappe/writing';
+import { getSkills } from '../lib/frappe/skills';
+import { profileLinks } from '../lib/profile';
+
+const [projects, experience, writing, skills] = await Promise.all([getProjects(), getExperience(), getWriting(), getSkills()]);
+const categories = [...new Set(skills.map(skill => skill.category))];
+const email = profileLinks.email;
+const github = profileLinks.github;
+const linkedin = profileLinks.linkedin;
+const x = profileLinks.x;
+const resume = import.meta.env.PUBLIC_RESUME_URL;
+---
+<BaseLayout>
+  <Hero />
+  <ProjectList projects={projects} />
+  <section class="section about-section" id="about" aria-labelledby="about-title">
+    <div class="section-label"><p class="eyebrow">02 / ABOUT</p></div>
+    <div class="about-content"><h2 id="about-title">Curious about the space <em>between</em> an idea and a dependable system.</h2>{resume && <a class="text-link about-resume" href={resume} target="_blank" rel="noopener noreferrer">VIEW RESUME <span aria-hidden="true">↗</span></a>}</div>
+  </section>
+  <section class="section experience-section" id="experience" aria-labelledby="experience-title">
+    <div class="section-heading"><div><p class="eyebrow">03 / EXPERIENCE</p><h2 id="experience-title">Internships<span class="accent">.</span></h2></div><p>Work measured by what changed.</p></div>
+    <div class="experience-log">{experience.map((item, index) => <article class="experience-entry"><div class="log-index">LOG / {String(index + 1).padStart(3,'0')}<span class="log-rail"></span></div><div><div class="experience-top"><h3>{item.company}</h3><span>{item.start_date?.slice(0,4) || 'FIELD WORK'}{item.end_date ? ` — ${item.end_date.slice(0,4)}` : ''}</span></div><p class="experience-role">{item.role}{item.location ? ` · ${item.location}` : ''}</p><p class="experience-description">{item.description}</p><div class="experience-bottom"><span>{item.achievements}</span><span>{item.technologies}</span></div></div></article>)}</div>
+  </section>
+  <section class="section stack-section" aria-labelledby="stack-title"><div class="stack-intro"><p class="eyebrow">04 / TOOLKIT</p><h2 id="stack-title">Tools change.<br /><span>Principles stay.</span></h2></div><div class="stack-list">{categories.map(category => <div class="stack-row"><span>{category}</span><p>{skills.filter(skill => skill.category === category).map(skill => skill.name).join(' · ')}</p></div>)}</div></section>
+  <section class="section hobbies-section" id="hobbies" aria-labelledby="hobbies-title">
+    <div class="hobbies-intro">
+      <p class="eyebrow">05 / OFF THE CLOCK</p>
+      <h2 id="hobbies-title">After hours<span class="accent">.</span></h2>
+      <p>When work gets intense, I take a break. Sometimes that's Minecraft or another game; sometimes it's tending the aquarium or heading out on my bike.</p>
+    </div>
+    <div class="hobbies-list" aria-label="Things I enjoy outside work">
+      <div class="hobby-row"><span>01</span><div><h3>Minecraft</h3><p>Still my favourite place to build things for no reason.</p></div></div>
+      <div class="hobby-row"><span>02</span><div><h3>Aquarium keeping</h3><p>A small ecosystem that's surprisingly hard to get right.</p></div></div>
+      <div class="hobby-row"><span>03</span><div><h3>Bike rides</h3><p>Long rides, empty roads, no particular destination.</p></div></div>
+      <div class="hobby-row"><span>04</span><div><h3>Gaming</h3><p>Usually where I end up when I need to switch my brain off.</p></div></div>
+    </div>
+  </section>
+  <section class="section writing-section" id="writing" aria-labelledby="writing-title"><div class="section-heading"><div><p class="eyebrow">06 / WRITING</p><h2 id="writing-title">Notes from the work<span class="accent">.</span></h2></div></div>{writing.length ? <div class="writing-list">{writing.map(item => <a href={`/writing/${item.slug}/`} class="writing-row"><span>{item.published_date?.slice(0,10)}</span><div><h3>{item.title}</h3><p>{item.excerpt}</p></div><span aria-hidden="true">↗</span></a>)}</div> : <div class="writing-empty"><span>NO PUBLIC NOTES YET</span><p>Some ideas are still becoming sentences. The useful ones will appear here.</p></div>}</section>
+  <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="contact-top"><p class="eyebrow">07 / CONTACT</p><span>END OF FILE <span class="accent">●</span></span></div><h2 id="contact-title">Let's make<br /><em>something useful.</em></h2><div class="contact-bottom"><p>Good conversations often start with a small, specific idea.</p><div class="contact-links">{email && <a href={`mailto:${email}`}>EMAIL ↗</a>}{github && <a href={github} target="_blank" rel="noopener noreferrer">GITHUB ↗</a>}{linkedin && <a href={linkedin} target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a>}{x && <a href={x} target="_blank" rel="noopener noreferrer">X ↗</a>}{!email && !github && !linkedin && !x && <span>CONTACT LINKS AVAILABLE SOON</span>}</div></div></section>
+</BaseLayout>

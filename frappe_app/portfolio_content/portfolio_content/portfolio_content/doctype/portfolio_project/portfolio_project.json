@@ -1,0 +1,108 @@
+{
+  "doctype": "DocType",
+  "name": "Portfolio Project",
+  "module": "Portfolio Content",
+  "custom": 0,
+  "istable": 0,
+  "issingle": 0,
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "title",
+    "slug",
+    "short_description",
+    "description",
+    "year",
+    "status",
+    "technologies",
+    "github_url",
+    "live_url",
+    "featured",
+    "display_order",
+    "preview_image"
+  ],
+  "fields": [
+    {
+      "fieldname": "title",
+      "label": "Title",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "slug",
+      "label": "Slug",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "short_description",
+      "label": "Short Description",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description",
+      "label": "Description",
+      "fieldtype": "Long Text"
+    },
+    {
+      "fieldname": "year",
+      "label": "Year",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "technologies",
+      "label": "Technologies",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "github_url",
+      "label": "GitHub URL",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "live_url",
+      "label": "Live URL",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "featured",
+      "label": "Featured",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "display_order",
+      "label": "Display Order",
+      "fieldtype": "Int",
+      "default": "0",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "preview_image",
+      "label": "Preview Image",
+      "fieldtype": "Attach Image"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "report": 1,
+      "export": 1
+    }
+  ],
+  "sort_field": "display_order",
+  "sort_order": "ASC"
+}

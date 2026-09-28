@@ -1,0 +1,16 @@
+---
+import type { Project } from '../lib/frappe/types';
+interface Props { projects: Project[] }
+const { projects } = Astro.props;
+---
+<section class="section work-section" id="work" aria-labelledby="work-title">
+  <div class="section-heading"><div><p class="eyebrow">01 / SELECTED WORK</p><h2 id="work-title">Things I've built<span class="accent">.</span></h2></div><p>A few projects where the interesting part is how they work.</p></div>
+  <div class="project-list">
+    {projects.map((project, index) => <article class="project-row">
+      <div class="project-number">{String(index + 1).padStart(2, '0')} <span class="project-arrow" aria-hidden="true">↗</span></div>
+      <div class="project-primary"><h3><a href={`/work/${project.slug}/`}>{project.title}</a></h3><p>{project.short_description}</p>{project.slug === 'consolestore' && <div class="terminal-line"><span>$</span> console order lunch <span class="terminal-cursor">_</span></div>}</div>
+      <div class="project-meta"><span>{project.technologies.split(',').slice(0, project.slug === 'enderchest' ? 4 : 3).join(' / ')}</span><span>{project.year && <>{project.year} <span class="meta-divider">/</span> </>}{project.status}</span></div>
+      <div class="project-actions"><a href={`/work/${project.slug}/`} aria-label={`Read about ${project.title}`}>DETAILS ↗</a>{project.live_url && <a href={project.live_url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${project.title} website`}>VISIT SITE ↗</a>}{project.github_url && <a href={project.github_url} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>CODE ↗</a>}</div>
+    </article>)}
+  </div>
+</section>

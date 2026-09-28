@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+auto-imports.d.ts
+components.d.ts
+__pycache__/
