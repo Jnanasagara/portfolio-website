@@ -12,7 +12,7 @@ const socials = [
   <div class="hero-main">
     <div class="hero-copy">
       <p class="eyebrow hero-eyebrow"><span class="tiny-cross">+</span> ENGINEERING / AUTOMATION / SYSTEMS</p>
-      <h1 id="hero-title" aria-label="Jnanasagara Srinivasa"><span><span class="hero-name" aria-hidden="true"><span class="hero-name-width">Jnanasagara</span><span data-scramble="Jnanasagara">Jnanasagara</span></span></span><span><span class="hero-name" aria-hidden="true"><span class="hero-name-width">Srinivasa</span><span data-scramble="Srinivasa">Srinivasa</span></span><span class="hero-period" aria-hidden="true">.</span></span></h1>
+      <h1 id="hero-title"><span>Jnanasagara</span><span>Srinivasa<span class="hero-period">.</span></span></h1>
       <div class="hero-bottom"><div class="hero-description"><p>I'm a computer science student who likes turning ideas into working projects. Most of what I build starts with something I want to understand better.</p><p>Right now, I'm especially interested in backend systems, automation, cloud, and finding better ways to build useful software.</p></div><a class="text-link hero-link" href="#work">EXPLORE SELECTED WORK <span aria-hidden="true">↗</span></a></div>
     </div>
     <aside class="hero-socials" aria-label="Ways to connect">
@@ -35,39 +35,7 @@ const socials = [
   if (!reduce.matches) {
     animate('.site-header', { opacity: [0, 1], y: [-8, 0], duration: 550, ease: 'outQuad' });
     animate('.hero-topline, .hero-eyebrow', { opacity: [0, 1], duration: 700, delay: 200, ease: 'outQuad' });
-    animate('.hero h1 > span', { opacity: [0, 1], y: [18, 0], duration: 850, delay: 280, ease: 'outCubic' });
+    animate('.hero h1 span', { opacity: [0, 1], y: [18, 0], duration: 850, delay: 280, ease: 'outCubic' });
     animate('.hero-bottom, .hero-socials', { opacity: [0, 1], y: [12, 0], duration: 700, delay: 520, ease: 'outQuad' });
-
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
-    const lines = [...document.querySelectorAll<HTMLElement>('.hero-name [data-scramble]')];
-    const targets = lines.map(line => line.dataset.scramble || '');
-    const randomLetter = () => letters[Math.floor(Math.random() * letters.length)];
-    const render = (elapsed: number) => {
-      let finished = true;
-      lines.forEach((line, lineIndex) => {
-        const target = targets[lineIndex];
-        const revealed = Math.max(0, Math.floor((elapsed - lineIndex * 200) / 85));
-        if (revealed < target.length) finished = false;
-        line.textContent = [...target].map((character, index) => index < revealed ? character : randomLetter()).join('');
-      });
-      return finished;
-    };
-    render(0);
-    let frame = 0;
-    const started = performance.now();
-    const tick = (now: number) => {
-      if (reduce.matches) {
-        lines.forEach((line, index) => { line.textContent = targets[index]; });
-        return;
-      }
-      if (!render(now - started)) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    reduce.addEventListener('change', () => {
-      if (reduce.matches) {
-        cancelAnimationFrame(frame);
-        lines.forEach((line, index) => { line.textContent = targets[index]; });
-      }
-    }, { once: true });
   }
 </script>
