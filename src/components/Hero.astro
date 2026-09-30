@@ -5,6 +5,7 @@ const socials = [
   { number: '02', name: 'GitHub', detail: 'CODE / EXPERIMENTS', url: profileLinks.github, external: true },
   { number: '03', name: 'X', detail: 'NOTES / CONVERSATION', url: profileLinks.x, external: true },
   { number: '04', name: 'Email', detail: profileLinks.email, url: `mailto:${profileLinks.email}`, external: false },
+  { number: '05', name: 'Resume', detail: 'BACKGROUND / EXPERIENCE', url: profileLinks.resume, external: true },
 ];
 ---
 <section class="hero" aria-labelledby="hero-title">
@@ -13,18 +14,18 @@ const socials = [
     <div class="hero-copy">
       <p class="eyebrow hero-eyebrow"><span class="tiny-cross">+</span> ENGINEERING / AUTOMATION / SYSTEMS</p>
       <h1 id="hero-title"><span>Jnanasagara</span><span>Srinivasa<span class="hero-period">.</span></span></h1>
-      <div class="hero-bottom"><div class="hero-description"><p>I'm a computer science student who likes turning ideas into working projects. Most of what I build starts with something I want to understand better.</p><p>Right now, I'm especially interested in backend systems, automation, cloud, and finding better ways to build useful software.</p></div><div class="hero-actions"><a class="text-link hero-link" href="#work">EXPLORE SELECTED WORK <span aria-hidden="true">↗</span></a><a class="text-link" href={profileLinks.resume} target="_blank" rel="noopener noreferrer" aria-label="View resume, opens in a new tab">VIEW RESUME <span aria-hidden="true">↗</span></a></div></div>
+      <div class="hero-bottom"><div class="hero-description"><p>I'm a computer science student who likes turning ideas into working projects. Most of what I build starts with something I want to understand better.</p><p>Right now, I'm especially interested in backend systems, automation, cloud, and finding better ways to build useful software.</p></div><a class="text-link hero-link" href="#work">EXPLORE SELECTED WORK <span aria-hidden="true">↗</span></a></div>
     </div>
     <aside class="hero-socials" aria-label="Ways to connect">
-      <div class="hero-socials-heading"><span>ELSEWHERE / FIND ME ONLINE</span><span>04 CHANNELS</span></div>
+      <div class="hero-socials-heading"><span>ELSEWHERE / LINKS & CONTACT</span><span>05 LINKS</span></div>
       <div class="hero-socials-list">
         {socials.map(({ number, name, detail, url, external }) => (
-          <a class="hero-social" href={url} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} aria-label={external ? `${name} profile, opens in a new tab` : `Email ${profileLinks.email}`}>
+          <a class="hero-social" href={url} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} aria-label={name === 'Resume' ? 'View resume, opens in a new tab' : external ? `${name} profile, opens in a new tab` : `Email ${profileLinks.email}`}>
             <span class="hero-social-index">{number}</span><span class="hero-social-main"><strong>{name}</strong><small>{detail}</small></span><span class="hero-social-arrow" aria-hidden="true">↗</span>
           </a>
         ))}
       </div>
-      <p class="hero-socials-note">EMAIL + EXTERNAL PROFILES</p>
+      <p class="hero-socials-note">EXTERNAL LINKS + EMAIL</p>
     </aside>
   </div>
   <div class="hero-footnote"><span>SCROLL TO READ THE LOG</span><span>↓</span></div>

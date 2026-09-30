@@ -14,14 +14,13 @@ const email = profileLinks.email;
 const github = profileLinks.github;
 const linkedin = profileLinks.linkedin;
 const x = profileLinks.x;
-const resume = profileLinks.resume;
 ---
 <BaseLayout>
   <Hero />
   <ProjectList projects={projects} />
   <section class="section about-section" id="about" aria-labelledby="about-title">
     <div class="section-label"><p class="eyebrow">02 / ABOUT</p></div>
-    <div class="about-content"><h2 id="about-title">Curious about the space <em>between</em> an idea and a dependable system.</h2>{resume && <a class="text-link about-resume" href={resume} target="_blank" rel="noopener noreferrer">VIEW RESUME <span aria-hidden="true">↗</span></a>}</div>
+    <div class="about-content"><h2 id="about-title">Curious about the space <em>between</em> an idea and a dependable system.</h2></div>
   </section>
   <section class="section experience-section" id="experience" aria-labelledby="experience-title">
     <div class="section-heading"><div><p class="eyebrow">03 / EXPERIENCE</p><h2 id="experience-title">Internships<span class="accent">.</span></h2></div><p>Work measured by what changed.</p></div>
